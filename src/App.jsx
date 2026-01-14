@@ -3,7 +3,8 @@ import { io } from 'socket.io-client';
 import LandingPage from './components/LandingPage';
 import GameRoom from './components/GameRoom';
 
-const socket = io('http://localhost:5000');
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+const socket = io(BACKEND_URL);
 
 function App() {
   const [room, setRoom] = useState(null);
