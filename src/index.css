@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@theme {
+  --color-background: #0a0a0c;
+  --color-card: rgba(23, 23, 26, 0.8);
+  
+  --color-indigo-600: #4f46e5;
+  --color-indigo-500: #6366f1;
+  
+  --color-primary: #6366f1;
+  --color-primary-light: #818cf8;
+  --color-primary-dark: #4f46e5;
+  
+  --color-accent-emerald: #10b981;
+  --color-accent-gold: #f59e0b;
+  --color-accent-rose: #f43f5e;
+  --color-accent-violet: #8b5cf6;
+  --color-accent-cyan: #06b6d4;
+
+  --shadow-glow-primary: 0 0 20px rgba(99, 102, 241, 0.2);
+  --shadow-glow-gold: 0 0 20px rgba(245, 158, 11, 0.2);
+  
+  --font-sans: "Outfit", sans-serif;
+}
+
+/* Custom Utilities */
+@utility bento-card {
+  @apply bg-zinc-900/40 backdrop-blur-2xl border border-white/[0.05] rounded-[1.5rem] md:rounded-[2.5rem] p-4 md:p-6 shadow-2xl transition-all duration-300;
+  &:hover {
+    @apply border-white/[0.1] bg-zinc-900/60;
+  }
+}
+
+@utility btn-vibrant {
+  @apply px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 relative overflow-hidden active:scale-95;
+}
+
+@utility btn-primary-vibrant {
+  @apply btn-vibrant bg-indigo-600 text-white shadow-[0_0_15px_rgba(79,70,229,0.3)] hover:shadow-[0_0_25px_rgba(79,70,229,0.5)] hover:bg-indigo-500;
+}
+
+@utility btn-emerald-vibrant {
+  @apply btn-vibrant bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] hover:bg-emerald-500;
+}
+
+@utility btn-rose-vibrant {
+  @apply btn-vibrant bg-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.3)] hover:shadow-[0_0_25px_rgba(244,63,94,0.5)] hover:bg-rose-500;
+}
+
+@utility btn-gold-vibrant {
+  @apply btn-vibrant bg-amber-500 text-white shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:shadow-[0_0_25px_rgba(245,158,11,0.5)] hover:bg-amber-400;
+}
+
+@utility input-vibrant {
+  @apply w-full bg-zinc-950/50 border border-white/[0.05] rounded-xl md:rounded-2xl px-4 py-3 md:px-6 md:py-4 text-white focus:outline-none focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300;
+}
+
+@utility text-gradient-gold {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 font-bold;
+}
+
+/* Hide number input spinners */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  }
+}
+
+/* Custom Slider Styles */
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-6 h-6 md:w-8 md:h-8 bg-indigo-500 rounded-full cursor-pointer border-4 border-zinc-900 shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  @apply bg-indigo-400 scale-110 shadow-[0_0_20px_rgba(99,102,241,0.7)];
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply w-6 h-6 md:w-8 md:h-8 bg-indigo-500 rounded-full cursor-pointer border-4 border-zinc-900 shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-background);
+  color: #e2e8f0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 30%),
+    radial-gradient(circle at 50% 10%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+    #0a0a0c;
+  background-attachment: fixed;
+}
