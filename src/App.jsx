@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import LandingPage from './components/LandingPage';
 import GameRoom from './components/GameRoom';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://poker-chips-backend-khaki.vercel.app/';
 const socket = io(BACKEND_URL);
 
 function App() {
