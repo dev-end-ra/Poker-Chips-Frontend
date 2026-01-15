@@ -29,6 +29,7 @@ function App() {
 
     socket.on('error', (msg) => {
       alert(msg);
+      setIsJoined(false); // Go back to landing page if room not found
     });
 
     return () => {

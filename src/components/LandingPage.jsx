@@ -9,28 +9,32 @@ const LandingPage = ({ onCreate, onJoin, initialRoomId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!roomId || !playerName) return;
+    const cleanRoomId = roomId.trim();
+    const cleanPlayerName = playerName.trim();
+    
+    if (!cleanRoomId || !cleanPlayerName) return;
+    
     if (isCreating) {
-      onCreate(roomId, initialChips, playerName);
+      onCreate(cleanRoomId, initialChips, cleanPlayerName);
     } else {
-      onJoin(roomId, playerName);
+      onJoin(cleanRoomId, cleanPlayerName);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden bg-zinc-950">
       {/* Decorative Blobs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-600/10 blur-[120px] rounded-full" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-amber-600/10 blur-[120px] rounded-full" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-amber-600/5 blur-[120px] rounded-full" />
 
       <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
         {/* Left Side: Branding/Intro */}
         <div className="flex flex-col justify-center space-y-6 md:space-y-8 p-2 md:p-4 text-center lg:text-left">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full text-xs font-semibold border border-indigo-500/20 mx-auto lg:mx-0">
+            <div className="inline-flex items-center gap-2 bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full text-xs font-semibold border border-indigo-500/20 mx-auto lg:mx-0 shadow-sm">
               <Zap size={14} /> Beta v1.0
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight text-white">
               Poker <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-500">Master</span>
               <br /> Tracker
             </h1>
@@ -41,28 +45,28 @@ const LandingPage = ({ onCreate, onJoin, initialRoomId }) => {
 
           <div className="flex flex-col gap-3 md:gap-4 items-center lg:items-start">
             <div className="flex items-center gap-3 text-slate-400">
-              <div className="bg-emerald-500/20 p-2 rounded-lg"><ShieldCheck size={18} className="text-emerald-500" /></div>
+              <div className="bg-emerald-500/10 p-2 rounded-lg border border-emerald-500/20 shadow-sm"><ShieldCheck size={18} className="text-emerald-500" /></div>
               <span className="text-sm md:text-base font-medium">Secure & Real-time Sync</span>
             </div>
             <div className="flex items-center gap-3 text-slate-400">
-              <div className="bg-indigo-500/20 p-2 rounded-lg"><Swords size={18} className="text-indigo-400" /></div>
+              <div className="bg-indigo-500/10 p-2 rounded-lg border border-indigo-500/20 shadow-sm"><Swords size={18} className="text-indigo-400" /></div>
               <span className="text-sm md:text-base font-medium">Join via Link or SMS</span>
             </div>
           </div>
         </div>
 
         {/* Right Side: Action Card */}
-        <div className="bento-card relative">
+        <div className="bento-card relative bg-zinc-900/40">
           <div className="flex gap-2 md:gap-4 mb-6 md:mb-8">
             <button 
               onClick={() => setIsCreating(true)}
-              className={`flex-1 py-3 rounded-xl font-semibold transition-all duration-300 ${isCreating ? 'bg-indigo-600 text-white shadow-lg' : 'bg-zinc-800/50 text-slate-500 hover:bg-zinc-800'}`}
+              className={`flex-1 py-3 rounded-xl font-semibold transition-all duration-300 ${isCreating ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'bg-zinc-800/50 text-slate-500 hover:bg-zinc-800'}`}
             >
               Create
             </button>
             <button 
               onClick={() => setIsCreating(false)}
-              className={`flex-1 py-3 rounded-xl font-semibold transition-all duration-300 ${!isCreating ? 'bg-indigo-600 text-white shadow-lg' : 'bg-zinc-800/50 text-slate-500 hover:bg-zinc-800'}`}
+              className={`flex-1 py-3 rounded-xl font-semibold transition-all duration-300 ${!isCreating ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : 'bg-zinc-800/50 text-slate-500 hover:bg-zinc-800'}`}
             >
               Join
             </button>
@@ -72,7 +76,7 @@ const LandingPage = ({ onCreate, onJoin, initialRoomId }) => {
             <div>
               <label className="block text-xs font-semibold mb-2 ml-1 text-slate-500 uppercase tracking-wider">Room ID</label>
               <input 
-                className="input-vibrant" 
+                className="input-vibrant bg-zinc-950/50" 
                 placeholder="friday-night-poker" 
                 value={roomId}
                 onChange={(e) => setRoomId(e.target.value)}
@@ -83,7 +87,7 @@ const LandingPage = ({ onCreate, onJoin, initialRoomId }) => {
             <div>
               <label className="block text-xs font-semibold mb-2 ml-1 text-slate-500 uppercase tracking-wider">Your Name</label>
               <input 
-                className="input-vibrant" 
+                className="input-vibrant bg-zinc-950/50" 
                 placeholder="Alex Mercer" 
                 value={playerName}
                 onChange={(e) => setPlayerName(e.target.value)}
@@ -97,7 +101,7 @@ const LandingPage = ({ onCreate, onJoin, initialRoomId }) => {
                 <div className="relative">
                   <input 
                     type="number"
-                    className="input-vibrant pl-10 md:pl-12" 
+                    className="input-vibrant pl-10 md:pl-12 bg-zinc-950/50" 
                     value={initialChips}
                     onChange={(e) => setInitialChips(Number(e.target.value))}
                     required
