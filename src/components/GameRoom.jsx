@@ -186,49 +186,49 @@ const GameRoom = ({ room, socket, playerName }) => {
         )}
 
         {/* Top Half: Pot and Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 h-auto sm:h-[130px]">
-          <div className="sm:col-span-5 bg-zinc-900/40 rounded-[1.5rem] border border-white/5 p-4 flex flex-col items-center justify-center relative overflow-hidden group">
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
+          <div className="sm:col-span-12 lg:col-span-5 bg-zinc-900/40 rounded-[1.5rem] border border-white/5 p-6 flex flex-col items-center justify-center relative overflow-hidden group min-h-[140px]">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-amber-500/5 blur-3xl group-hover:bg-amber-500/10 transition-all duration-700" />
             <div className="bg-amber-500/10 px-3 py-0.5 rounded-full border border-amber-500/20 mb-2">
               <span className="text-amber-500 text-[9px] font-bold tracking-widest uppercase">Central Pot</span>
             </div>
             <div className="flex items-center gap-3 relative z-10">
-              <Trophy size={32} className="text-amber-500 drop-shadow-glow-gold" />
-              <h1 className="text-5xl font-bold text-gradient-gold leading-none">{room.pot}</h1>
+              <Trophy size={40} className="text-amber-500 drop-shadow-glow-gold" />
+              <h1 className="text-6xl font-bold text-gradient-gold leading-none">{room.pot}</h1>
             </div>
             {room.pot > 0 && isHost && (
               <button 
                 onClick={() => setSelectingWinner(true)}
-                className="mt-2 bg-amber-500 text-black text-[10px] font-bold px-3 py-1 rounded-lg hover:scale-105 transition-all shadow-lg active:scale-95"
+                className="mt-3 bg-amber-500 text-black text-[10px] font-bold px-4 py-1.5 rounded-lg hover:scale-105 transition-all shadow-lg active:scale-95"
               >
                 AWARD POT
               </button>
             )}
           </div>
 
-          <div className="sm:col-span-7 bg-indigo-600/[0.03] rounded-[1.5rem] border border-indigo-500/10 p-4 flex flex-col justify-between">
-            <div className="flex justify-between items-center">
+          <div className="sm:col-span-12 lg:col-span-7 bg-indigo-600/[0.03] rounded-[1.5rem] border border-indigo-500/10 p-6 flex flex-col justify-center min-h-[140px]">
+            <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-2">
-                <UserCircle size={18} className="text-indigo-400" />
-                <span className="font-bold text-sm">{playerName}</span>
+                <UserCircle size={20} className="text-indigo-400" />
+                <span className="font-bold text-base">{playerName}</span>
               </div>
-              <div className="flex items-center gap-2 bg-emerald-500/10 px-3 py-1 rounded-xl border border-emerald-500/10">
-                <Wallet size={12} className="text-emerald-500" />
-                <span className="text-emerald-400 font-bold text-base leading-none">{currentPlayer?.chips || 0}</span>
+              <div className="flex items-center gap-2 bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/10">
+                <Wallet size={14} className="text-emerald-500" />
+                <span className="text-emerald-400 font-bold text-xl leading-none">{currentPlayer?.chips || 0}</span>
               </div>
             </div>
 
-            <div className="flex gap-2 mt-4">
+            <div className="flex gap-2">
               <input 
                 type="number" 
-                className="flex-1 bg-zinc-950/50 border border-white/10 rounded-xl px-4 py-2 text-white font-bold focus:outline-none focus:border-indigo-500/30"
+                className="flex-1 min-w-[100px] bg-zinc-950/50 border border-white/10 rounded-xl px-4 py-3 text-white font-bold focus:outline-none focus:border-indigo-500/30 text-lg"
                 value={betAmount}
                 onChange={(e) => setBetAmount(e.target.value)}
               />
               <button 
                 onClick={handleBet}
                 disabled={!currentPlayer || currentPlayer.chips < parseInt(betAmount) || parseInt(betAmount) <= 0}
-                className="bg-indigo-600 px-6 rounded-xl font-bold text-sm shadow-lg hover:bg-indigo-500 disabled:opacity-50 transition-all active:scale-95"
+                className="bg-indigo-600 px-8 rounded-xl font-bold text-base shadow-lg hover:bg-indigo-500 disabled:opacity-50 transition-all active:scale-95 whitespace-nowrap"
               >
                 BET
               </button>
