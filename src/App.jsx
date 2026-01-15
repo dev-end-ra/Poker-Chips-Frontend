@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import LandingPage from './components/LandingPage';
 import GameRoom from './components/GameRoom';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://poker-chips-backend-khaki.vercel.app/';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://poker-orjq.onrender.com';
 const socket = io(BACKEND_URL, {
   transports: ['polling'],
   path: '/socket.io'
